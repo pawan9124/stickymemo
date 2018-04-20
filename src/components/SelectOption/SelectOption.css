@@ -1,0 +1,13 @@
+.root {
+    display: flex;
+    flex-wrap: wrap;
+    font-size:14px;
+  }
+  .formControl {
+    min-width: 120;
+    max-width: 300;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+  }
