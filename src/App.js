@@ -9,7 +9,7 @@ class App extends Component {
       <div>
         <Header />
         <SelectOption />
-        {/*<ViewCard />*/}
+        <ViewCard />
       </div>
     );
   }
