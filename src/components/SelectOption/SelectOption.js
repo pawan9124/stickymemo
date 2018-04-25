@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Select from 'material-ui-next/Select';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import SearchIcon from '@material-ui/icons/Search';
+import RaisedButton from 'material-ui/RaisedButton';
 // import { Grid, Row, Col } from 'react-bootstrap';
 import { MenuItem } from 'material-ui/Menu';
 import { Grid } from "material-ui-next";
@@ -9,6 +11,7 @@ import { FormControl } from 'material-ui-next/Form';
 import './SelectOption.css';
 import CountryStateCity from 'country-state-city';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import DisplayCards from '../DisplayCards/DisplayCards.js';
 
 //to support the onTouchTap 
 injectTapEventPlugin();
@@ -26,6 +29,7 @@ class SelectOption extends Component{
 			    country:[],
 			    states:[],
 			    city:[],
+			    showDisplayCards:false
 			  };
 	}
 componentDidMount(){
@@ -36,12 +40,14 @@ componentDidMount(){
 
 //for selecting the list of the countries
   handleChangeCountry = (event) => {
-    this.setState({ countryName: event.target.value});
+    this.setState({ countryName: event.target.value,stateName:'',cityName:''});
+    console.log("EventCountryName=>",event.target.value);
+    
 };
 
 //for handling the list of the state
 handleChangeState = event =>{
-	this.setState({stateName:event.target.value});
+	this.setState({stateName:event.target.value,cityName:''});
 };
 
 //for handling the list of the city
@@ -55,6 +61,7 @@ handleChangeCity = event =>{
    var stateList = CountryStateCity.getStatesOfCountry(id);
    console.log("State",stateList);
    this.setState({states:stateList});
+   this.displayCards = this.displayCards.bind(this);
 };
 
 //To get the list of the city of a state
@@ -63,22 +70,24 @@ getSelectedState = id =>{
 	console.log("City",cityList);
 	this.setState({city:cityList});
 }
+//to set the country,state and city 
+displayCards = (param)=>{
+	console.log("Inside the click");
+	this.setState({showDisplayCards:param});
+}
 
-// //To get the list of city of the state
-//   getSelectedCity = id =>{
-//    console.log("id",id);
-//    var cityList = CountryStateCity.getCitiesOfState(id);
-//    console.log("State",cityList);
-//    this.setState({city:cityList});
-// };
-
+//to set the switch on or off
+makeFalseDisplayCard = ()=>{
+	console.log("inside the swtich off");
+	this.setState({showDisplayCards:false});
+}
 
 	render(){
 		return(
 				<div className="mt3 root" >
 					<MuiThemeProvider>
 						<Grid container>
-							<Grid item xs={12} sm={6} md={4} className="tc">
+							<Grid item xs={12} sm={6} md={3} className="tc">
 								<FormControl className="formControl">
 						          <InputLabel htmlFor="age-simple">Country</InputLabel>
 						          <Select
@@ -101,7 +110,7 @@ getSelectedState = id =>{
 						          </Select>
 						        </FormControl>
 							</Grid>
-							<Grid item xs={12} sm={6} md={4} className="tc">
+							<Grid item xs={12} sm={6} md={3} className="tc">
 								<FormControl className="formControl">
 						          <InputLabel htmlFor="state">State</InputLabel>
 						          <Select
@@ -124,7 +133,7 @@ getSelectedState = id =>{
 						          </Select>
 						        </FormControl>
 							</Grid>
-							<Grid item xs={12} sm={6} md={4} className="tc">
+							<Grid item xs={12} sm={6} md={3} className="tc">
 							<FormControl className="formControl">
 						          <InputLabel htmlFor="city">City</InputLabel>
 						          <Select
@@ -151,12 +160,29 @@ getSelectedState = id =>{
 						          </Select>
 						        </FormControl>
 							</Grid>
+							<Grid item xs={12} sm={6} md={3} className="tc">
+								<RaisedButton
+							      label="Search"
+							      labelPosition="before"
+							      primary={true}
+							      icon={<SearchIcon />}
+							      onClick={()=>this.displayCards(true)}
+							    />
+							</Grid>
 			          	</Grid>
 					</MuiThemeProvider> 
+					{	
+						this.state.showDisplayCards === true ?
+						<DisplayCards 
+						countryName={this.state.countryName} 
+						stateName={this.state.stateName} 
+						cityName={this.state.cityName}
+						displayCards={this.displayCards} />
+						:null
+					}
 				</div>
 			);
 	}
-
 };
 
 export default SelectOption;
