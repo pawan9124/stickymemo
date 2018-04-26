@@ -1,16 +1,15 @@
-import React from 'react';
+import data from '../../DemoData/CountryFamous.json';
 
-const DisplayCards = ({countryName,stateName,cityName,displayCards}) =>{
+const DisplayCards = ({countryName,stateName,cityName,displayCards,setCardData}) =>{
 	console.log("CountryName=>",countryName);
 	console.log("stateName=>",stateName);
 	console.log("cityName=>",cityName);
 
-	//calling a function to make parent varialbe false
+	//calling function insde selectOption js to set data of the country
+	setCardData(data);
+	//calling a function from selectOption js to make parent varialbe false
 	displayCards(false);
-	
-	return(
-	<div>hi</div>
-	);
+	return null;
 };
 
 export default DisplayCards;

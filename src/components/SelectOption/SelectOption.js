@@ -12,6 +12,7 @@ import './SelectOption.css';
 import CountryStateCity from 'country-state-city';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import DisplayCards from '../DisplayCards/DisplayCards.js';
+import ViewCards from '../ViewCards/ViewCards.js';
 
 //to support the onTouchTap 
 injectTapEventPlugin();
@@ -29,9 +30,12 @@ class SelectOption extends Component{
 			    country:[],
 			    states:[],
 			    city:[],
-			    showDisplayCards:false
+			    showDisplayCards:false,
+			    cardData:{},
 			  };
+			  // this.setCardData = this.setCardData.bind(this);
 	}
+
 componentDidMount(){
 	const countryList = CountryStateCity.getAllCountries();
 	console.log("countryList",countryList);
@@ -39,10 +43,9 @@ componentDidMount(){
 }
 
 //for selecting the list of the countries
-  handleChangeCountry = (event) => {
+handleChangeCountry = (event) => {
     this.setState({ countryName: event.target.value,stateName:'',cityName:''});
     console.log("EventCountryName=>",event.target.value);
-    
 };
 
 //for handling the list of the state
@@ -56,7 +59,7 @@ handleChangeCity = event =>{
 };
 
 //To get the list of state of the country
-  getSelectedCountry = id =>{
+getSelectedCountry = id =>{
    console.log("id",id);
    var stateList = CountryStateCity.getStatesOfCountry(id);
    console.log("State",stateList);
@@ -76,12 +79,13 @@ displayCards = (param)=>{
 	this.setState({showDisplayCards:param});
 }
 
-//to set the switch on or off
-makeFalseDisplayCard = ()=>{
-	console.log("inside the swtich off");
-	this.setState({showDisplayCards:false});
+//to update the data used to view cards
+componentWillMount(){
+this.setCardData =(prop)=>{
+	console.log("setCardData==>",prop);
+	this.setState({cardData:prop})
 }
-
+}
 	render(){
 		return(
 				<div className="mt3 root" >
@@ -171,13 +175,15 @@ makeFalseDisplayCard = ()=>{
 							</Grid>
 			          	</Grid>
 					</MuiThemeProvider> 
+					{Object.keys(this.state.cardData).length > 0?<ViewCards famousData={this.state.cardData}/>:null}
 					{	
 						this.state.showDisplayCards === true ?
 						<DisplayCards 
 						countryName={this.state.countryName} 
 						stateName={this.state.stateName} 
 						cityName={this.state.cityName}
-						displayCards={this.displayCards} />
+						displayCards={this.displayCards}
+						setCardData={this.setCardData} />
 						:null
 					}
 				</div>

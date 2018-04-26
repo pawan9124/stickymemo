@@ -15,6 +15,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+console.log("Here inside the component");
+
 const styles = theme => ({
   card: {
     maxWidth: 400,
@@ -49,7 +51,7 @@ class ViewCards extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes,famousData } = this.props;
 
     return (
       <div className="ma4">
@@ -66,18 +68,17 @@ class ViewCards extends React.Component {
                 <MoreVertIcon />
               </IconButton>
             }
-            title="Shrimp and Chorizo Paella"
-            subheader="September 14, 2016"
+            title={famousData.name}
+            subheader={famousData.location}
           />
           <CardMedia
             className={classes.media}
-            image="https://www.telegraph.co.uk/content/dam/Travel/Destinations/Europe/Croatia/croatia-holidayvilla-villaivey.jpg?imwidth=450"
+            image={famousData.img}
             title="Contemplative Reptile"
           />
           <CardContent>
             <Typography component="p">
-              This impressive paella is a perfect party dish and a fun meal to cook together with
-              your guests. Add 1 cup of frozen peas along with the mussels, if you like.
+              {famousData.desc}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} >
