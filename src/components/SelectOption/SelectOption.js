@@ -31,7 +31,7 @@ class SelectOption extends Component{
 			    states:[],
 			    city:[],
 			    showDisplayCards:false,
-			    cardData:{},
+			    cardData:[],
 			  };
 			  // this.setCardData = this.setCardData.bind(this);
 	}
@@ -80,12 +80,11 @@ displayCards = (param)=>{
 }
 
 //to update the data used to view cards
-componentWillMount(){
-this.setCardData =(prop)=>{
+setCardData =(prop)=>{
 	console.log("setCardData==>",prop);
 	this.setState({cardData:prop})
 }
-}
+
 	render(){
 		return(
 				<div className="mt3 root" >
@@ -175,7 +174,12 @@ this.setCardData =(prop)=>{
 							</Grid>
 			          	</Grid>
 					</MuiThemeProvider> 
-					{Object.keys(this.state.cardData).length > 0?<ViewCards famousData={this.state.cardData}/>:null}
+					{Object.keys(this.state.cardData).length > 0?
+						this.state.cardData.map((card,key)=>{
+							return(
+							<ViewCards key={key} famousData={card}/>
+							)
+						}):null}
 					{	
 						this.state.showDisplayCards === true ?
 						<DisplayCards 

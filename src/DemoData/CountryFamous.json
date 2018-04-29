@@ -1,7 +1,28 @@
-{
+[{
 	"country":"India",
 	"name":"Taj Mahal",
 	"img":"https://static.independent.co.uk/s3fs-public/styles/article_small/public/thumbnails/image/2017/10/03/17/tajmahal.jpg",
 	"desc":"Taj Mahal located in the heart of Agra, India",
 	"location":"Agra,India"
-}
+},
+{
+	"country":"India",
+	"name":"Amer Fort",
+	"img":"https://i.ytimg.com/vi/YlVEK-Fiois/maxresdefault.jpg",
+	"desc":"Amer Fort located in the heart of Jaipur, India",
+	"location":"Agra,India"
+},
+{
+	"country":"India",
+	"name":"Red Fort",
+	"img":"http://www.visittnt.com/blog/wp-content/uploads/2017/10/red-fort.jpg",
+	"desc":"Red Fort located in the heart of Delhi, India",
+	"location":"Agra,India"
+},
+{
+	"country":"India",
+	"name":"Goa Beach",
+	"img":"https://imgcld.yatra.com/ytimages/image/upload/t_yt_blog_c_fill_q_auto:good_f_auto_w_800_h_500/v1450246263/Word_Goa_on_beach.jpg",
+	"desc":"Goa Beach located in the heart of Goa, India",
+	"location":"Agra,India"
+}]
