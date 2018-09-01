@@ -11,8 +11,8 @@ import { FormControl } from 'material-ui-next/Form';
 import './SelectOption.css';
 import CountryStateCity from 'country-state-city';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import DisplayCards from '../DisplayCards/DisplayCards.js';
-import ViewCards from '../ViewCards/ViewCards.js';
+import DisplayCards from './DisplayCards/DisplayCards.js';
+import ViewCards from './ViewCards/ViewCards.js';
 
 //to support the onTouchTap 
 injectTapEventPlugin();
@@ -38,14 +38,14 @@ class SelectOption extends Component{
 
 componentDidMount(){
 	const countryList = CountryStateCity.getAllCountries();
-	console.log("countryList",countryList);
+	// console.log("countryList",countryList);
 	this.setState({country:countryList});
 }
 
 //for selecting the list of the countries
 handleChangeCountry = (event) => {
     this.setState({ countryName: event.target.value,stateName:'',cityName:''});
-    console.log("EventCountryName=>",event.target.value);
+    // console.log("EventCountryName=>",event.target.value);
 };
 
 //for handling the list of the state
@@ -60,9 +60,9 @@ handleChangeCity = event =>{
 
 //To get the list of state of the country
 getSelectedCountry = id =>{
-   console.log("id",id);
+   // console.log("id",id);
    var stateList = CountryStateCity.getStatesOfCountry(id);
-   console.log("State",stateList);
+   // console.log("State",stateList);
    this.setState({states:stateList});
    this.displayCards = this.displayCards.bind(this);
 };
@@ -70,18 +70,18 @@ getSelectedCountry = id =>{
 //To get the list of the city of a state
 getSelectedState = id =>{
 	var cityList = CountryStateCity.getCitiesOfState(id);
-	console.log("City",cityList);
+	// console.log("City",cityList);
 	this.setState({city:cityList});
 }
 //to set the country,state and city 
 displayCards = (param)=>{
-	console.log("Inside the click");
+	// console.log("Inside the click");
 	this.setState({showDisplayCards:param});
 }
 
 //to update the data used to view cards
 setCardData =(prop)=>{
-	console.log("setCardData==>",prop);
+	// console.log("setCardData==>",prop);
 	this.setState({cardData:prop})
 }
 

@@ -1,0 +1,13 @@
+
+// *****************  SET UP FOR THE DATABASE FOR LOBSTORY  *********************//
+
+
+Database name: lobst8bl_lobstorymvp
+
+Database host:
+
+Username: lobst8bl_saket
+
+Password: pR2}a$gp!.PT
+
+directory: psaket_
