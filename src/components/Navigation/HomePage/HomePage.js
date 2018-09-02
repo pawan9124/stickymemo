@@ -24,10 +24,10 @@ class HomePage extends Component{
 			<Content style={{ padding: '0 24px', minHeight: 280 }}>
 				<SearchDate />
 	    	<UploadPics setPostData={this.setThedisplayExperienceData} />
-    		 {this.state.experienceLoading === true ?<DisplayExperience
-          image={this.state.userImage}
-          text={this.state.userText}
-        />:null}
+    		 <DisplayExperience
+          userImage={this.state.userImage}
+          userText={this.state.userText}
+        />
 			</Content>
     	</div>
     );
