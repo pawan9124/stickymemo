@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import './DisplayExperience.css';
-import ExperienceCard from '../ExperienceCard/ExperienceCard.js'
 import { Layout } from 'antd';
 import DisplayCardData from './DisplayCardData/DisplayCardData';
 import image9 from './../../../../images/image2.jpg';
