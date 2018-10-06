@@ -19,8 +19,8 @@ injectTapEventPlugin();
 
 
 class SelectOption extends Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
 			    age: '',
 			    countryName: '',
@@ -32,6 +32,7 @@ class SelectOption extends Component{
 			    city:[],
 			    showDisplayCards:false,
 			    cardData:[],
+			    showSearchButton:this.props.showSearch,
 			  };
 			  // this.setCardData = this.setCardData.bind(this);
 	}
@@ -39,6 +40,7 @@ class SelectOption extends Component{
 componentDidMount(){
 	const countryList = CountryStateCity.getAllCountries();
 	// console.log("countryList",countryList);
+	console.log("ShowSearchButtons",this.props.showSearch);
 	this.setState({country:countryList});
 }
 
@@ -163,15 +165,17 @@ setCardData =(prop)=>{
 						          </Select>
 						        </FormControl>
 							</Grid>
-							<Grid item xs={12} sm={6} md={3} className="tc">
-								<RaisedButton
-							      label="Search"
-							      labelPosition="before"
-							      primary={true}
-							      icon={<SearchIcon />}
-							      onClick={()=>this.displayCards(true)}
-							    />
-							</Grid>
+							{this.state.showSearchButton === true ?
+								<Grid item xs={12} sm={6} md={3} className="tc">
+									<RaisedButton
+								      label="Search"
+								      labelPosition="before"
+								      primary={true}
+								      icon={<SearchIcon />}
+								      onClick={()=>this.displayCards(true)}
+								    />
+								</Grid>:null
+							}
 			          	</Grid>
 					</MuiThemeProvider> 
 					{Object.keys(this.state.cardData).length > 0?

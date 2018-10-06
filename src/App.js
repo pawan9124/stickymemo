@@ -11,7 +11,7 @@ class App extends Component {
       <Header />
 	      <BrowserRouter>
 	      <div>
-	        <Route path="/" exact component={SelectOption} />
+	        <Route path="/" exact render={(props) => <SelectOption {...props} showSearch={true}/>}/>
 	        <Route path="/cardDetail" component={Navigation} />
 	      </div>
 	    </BrowserRouter>
